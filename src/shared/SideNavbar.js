@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import {
     Box,
     Drawer,
@@ -7,11 +8,11 @@ import {
     ListItemIcon,
     ListItemText
 } from '@mui/material';
-import { Home, Search, LibraryMusic, SurroundSound } from '@mui/icons-material';
+import {Home, Search, LibraryMusic, SurroundSound} from '@mui/icons-material';
 
 const SideNavbar = () => {
     return (
-        <Box sx={{ display: 'flex', position: 'fixed', height: '100vh' }}>
+        <Box sx={{display: 'flex', position: 'fixed', height: '100vh'}}>
             <Drawer
                 sx={{
                     '& .MuiDrawer-paper': {
@@ -34,27 +35,33 @@ const SideNavbar = () => {
                         }}
                     >
                         <ListItemIcon>
-                            <SurroundSound sx={{ fontSize: '50px' }} />
+                            <SurroundSound sx={{fontSize: '50px'}}/>
                         </ListItemIcon>
-                        <ListItemText primary="MusicHub" />
+                        <ListItemText primary="MusicHub"/>
                     </ListItem>
                     <ListItem button>
                         <ListItemIcon>
-                            <Home />
+                            <Home/>
                         </ListItemIcon>
-                        <ListItemText primary="Home" />
+                        <Link to={"/"}>
+                            <ListItemText primary="Home"/>
+                        </Link>
                     </ListItem>
                     <ListItem button>
                         <ListItemIcon>
-                            <Search />
+                            <Search/>
                         </ListItemIcon>
-                        <ListItemText primary="Search" />
+                        <Link to={"/search"}>
+                            <ListItemText primary="Search"/>
+                        </Link>
                     </ListItem>
                     <ListItem button>
                         <ListItemIcon>
-                            <LibraryMusic />
+                            <LibraryMusic/>
                         </ListItemIcon>
-                        <ListItemText primary="Your Library" />
+                        <Link to={"/library"}>
+                            <ListItemText primary="Your Library"/>
+                        </Link>
                     </ListItem>
                 </List>
             </Drawer>

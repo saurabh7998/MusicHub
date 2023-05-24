@@ -3,7 +3,7 @@ import SideNavbar from "../shared/SideNavbar";
 import TopAppBar from "../shared/Appbar";
 import {Box} from "@mui/material";
 
-const Search = () => {
+const Library = () => {
     return (
         <Grid container>
             <Grid xs={2}>
@@ -20,7 +20,7 @@ const Search = () => {
                 </Box>
             </Grid>
         </Grid>
-    );
+    )
 }
 
-export default Search;
+export default Library;
