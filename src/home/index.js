@@ -2,12 +2,35 @@ import Album from "../Album";
 import Grid from "@mui/material/Grid";
 import {Box} from "@mui/material";
 import SideNavbar from "../shared/SideNavbar";
-import TopAppBar from "../shared/Appbar";
+import Appbar from "../shared/Appbar";
+import SpotifyWebApi from "spotify-web-api-node";
+import useAuth from "../useAuth";
+import {useEffect, useState} from "react";
+
+export const spotifyApi = new SpotifyWebApi({
+                                                clientId: "4a89680f85b44ea0931efc1d24e59460",
+                                            })
 
 const Home = () => {
+    const accessToken = useAuth();
+    const[latestAlbums, setLatestAlbums] = useState([]);
+    useEffect(() => {
+        if (!accessToken) {
+            return
+        }
+        spotifyApi.setAccessToken(accessToken)
+        spotifyApi.getFeaturedPlaylists().then((res) => {
+            setLatestAlbums(res.body.playlists.items);
+        })
+    }, [accessToken]);
 
-    // replace this with albums from spotify api
-    const albums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    // useEffect(() => {
+    //     if(accessToken) {
+    //         spotifyApi.getNewReleases().then((res) => {
+    //             console.log(res.data);
+    //         });
+    //     }
+    // }, []);
 
     return (
         <Grid container>
@@ -22,11 +45,11 @@ const Home = () => {
                     }}
                 >
                     <Box sx={{marginBottom: '20px'}}>
-                        <TopAppBar/> {/* Render the TopAppBar component here */}
+                        <Appbar/> {/* Render the TopAppBar component here */}
                     </Box>
                     <Grid container spacing={4}>
                         {
-                            albums.map((album) => <Album/>)
+                            latestAlbums.map((album) => <Album album={album}/>)
                         }
                     </Grid>
                 </Box>

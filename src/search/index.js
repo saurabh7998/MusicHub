@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import SideNavbar from "../shared/SideNavbar";
-import TopAppBar from "../shared/Appbar";
+import Appbar from "../shared/Appbar";
 import {Box} from "@mui/material";
 
 const Search = () => {
@@ -16,7 +16,7 @@ const Search = () => {
                         padding: '20px',
                     }}
                 >
-                    <TopAppBar/>
+                    <Appbar/>
                 </Box>
             </Grid>
         </Grid>

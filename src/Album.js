@@ -7,7 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
-export default function Album() {
+export default function Album({ album }) {
     return (
         <Grid item xs={9} sm={6} md={3}>
             <Card
@@ -19,14 +19,14 @@ export default function Album() {
                         // 16:9
                         pt: '56.25%',
                     }}
-                    image="https://source.unsplash.com/random?wallpapers"
+                    image={album.images[0].url}
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Heading
+                        {album.name}
                     </Typography>
                     <Typography>
-                        This is a media card.
+                        {album.description}
                     </Typography>
                 </CardContent>
                 <CardActions>

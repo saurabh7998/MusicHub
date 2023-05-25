@@ -5,7 +5,7 @@ import {
     Box
 } from '@mui/material';
 
-const TopAppBar = () => {
+const Appbar = () => {
     return (
         <Box
             sx={{
@@ -34,4 +34,4 @@ const TopAppBar = () => {
     );
 };
 
-export default TopAppBar;
+export default Appbar;
