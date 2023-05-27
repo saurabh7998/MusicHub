@@ -3,7 +3,6 @@ import {Box, Typography, IconButton} from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Grid from "@mui/material/Grid";
 
-ß
 export default function TrackSearchResult({track, key}) {
 
     return (
