@@ -31,7 +31,6 @@ export default function Album({ album }) {
                 </CardContent>
                 <CardActions>
                     <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
                 </CardActions>
             </Card>
         </Grid>

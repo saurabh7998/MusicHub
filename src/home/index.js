@@ -3,17 +3,13 @@ import Grid from "@mui/material/Grid";
 import {Box} from "@mui/material";
 import SideNavbar from "../shared/SideNavbar";
 import Appbar from "../shared/Appbar";
-import SpotifyWebApi from "spotify-web-api-node";
+import {spotifyApi} from "../shared/common";
 import useAuth from "../useAuth";
 import {useEffect, useState} from "react";
 
-export const spotifyApi = new SpotifyWebApi({
-                                                clientId: "4a89680f85b44ea0931efc1d24e59460",
-                                            })
-
 const Home = () => {
     const accessToken = useAuth();
-    const[latestAlbums, setLatestAlbums] = useState([]);
+    const [latestAlbums, setLatestAlbums] = useState([]);
     useEffect(() => {
         if (!accessToken) {
             return
@@ -23,14 +19,6 @@ const Home = () => {
             setLatestAlbums(res.body.playlists.items);
         })
     }, [accessToken]);
-
-    // useEffect(() => {
-    //     if(accessToken) {
-    //         spotifyApi.getNewReleases().then((res) => {
-    //             console.log(res.data);
-    //         });
-    //     }
-    // }, []);
 
     return (
         <Grid container>

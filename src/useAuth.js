@@ -18,6 +18,5 @@ export default function useAuth(code) {
         })
     }, [])
 
-
     return accessToken
 }
