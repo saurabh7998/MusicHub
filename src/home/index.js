@@ -28,12 +28,14 @@ const Home = () => {
             <Grid xs={10}>
                 <Box
                     sx={{
-                        backgroundColor: 'black',
+                        backgroundColor: '#1E1E1E',
+                        color: '#FFFFFF',
                         padding: '20px',
+                        height: '100%',
                     }}
                 >
                     <Box sx={{marginBottom: '20px'}}>
-                        <Appbar/> {/* Render the TopAppBar component here */}
+                        <Appbar/>
                     </Box>
                     <Grid container spacing={4}>
                         {

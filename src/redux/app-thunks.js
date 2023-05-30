@@ -5,7 +5,6 @@ export const setAccessTokenThunk = createAsyncThunk(
     'spotifywebapi/getToken',
     async () => {
         const res = await service.getAccessTokenFromSpotifyAPI();
-        console.log(res);
         return res.data;
     })
 

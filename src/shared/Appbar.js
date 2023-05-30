@@ -22,6 +22,7 @@ const Appbar = ({ setSearch }) => {
                 position: 'sticky',
                 top: 0,
                 zIndex: 1,
+                height: '100%',
             }}
         >
             <Box spacing={8}>
@@ -39,7 +40,7 @@ const Appbar = ({ setSearch }) => {
                                         padding: '4px',
                                         width: '800px',
                                     }}
-                                    placeholder="Search a song..."
+                                    placeholder="What do you want to listen to?"
                                     onChange={(e) => setSearch(e.target.value)}
                                 />
                                 <IconButton sx={{p: '10px', color:'rgba(255,'

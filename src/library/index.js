@@ -12,7 +12,7 @@ const Library = () => {
             <Grid xs={10}>
                 <Box
                     sx={{
-                        backgroundColor: 'black',
+                        backgroundColor: '#1E1E1E',
                         padding: '20px',
                     }}
                 >
