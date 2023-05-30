@@ -1,26 +1,29 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
-import Home from "./home";
-import SearchPage from "./search";
-import Library from "./library";
+import {configureStore} from "@reduxjs/toolkit";
+import appReducer from './redux/index';
+import {Provider, useDispatch, useSelector} from "react-redux";
+import MusicHub from "./MusicHub";
 
 const defaultTheme = createTheme();
+
+const store = configureStore({
+                                 reducer: {
+                                     appSlice: appReducer,
+                                 },
+                             });
 
 function App() {
     return (
         <ThemeProvider theme={defaultTheme}>
             <BrowserRouter>
                 <div>
-                    <Routes>
-                        <Route path={"/"} element={<Home/>}/>
-                        <Route path={"/search"} element={<SearchPage/>}/>
-                        <Route path={"/library"} element={<Library/>}/>
-                    </Routes>
-
+                    <Provider store={store}>
+                        <MusicHub/>
+                    </Provider>
                 </div>
             </BrowserRouter>
         </ThemeProvider>
-
     );
 }
 

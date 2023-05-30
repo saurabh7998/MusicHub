@@ -2,12 +2,12 @@ import React from 'react';
 import Appbar from '../shared/Appbar';
 import {Box, Grid} from '@mui/material';
 import {spotifyApi} from '../shared/common';
-import useAuth from '../useAuth';
 import TrackSearchResult from './TrackSearchResult';
 import SideNavbar from "../shared/SideNavbar";
+import {useSelector} from "react-redux";
 
 const MainComponent = () => {
-    const accessToken = useAuth();
+    const accessToken = useSelector((state) => state.appSlice.accessToken);
     const [search, setSearch] = React.useState('');
     const [searchResults, setSearchResults] = React.useState([]);
 
@@ -17,6 +17,7 @@ const MainComponent = () => {
             return;
         }
         if (!accessToken) {
+            console.log("No access token!")
             return;
         }
 

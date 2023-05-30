@@ -4,17 +4,17 @@ import {Box} from "@mui/material";
 import SideNavbar from "../shared/SideNavbar";
 import Appbar from "../shared/Appbar";
 import {spotifyApi} from "../shared/common";
-import useAuth from "../useAuth";
 import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 
 const Home = () => {
-    const accessToken = useAuth();
+    const accessToken = useSelector((state) => state.appSlice.accessToken);
     const [latestAlbums, setLatestAlbums] = useState([]);
     useEffect(() => {
         if (!accessToken) {
+            console.log("No access token!")
             return
         }
-        spotifyApi.setAccessToken(accessToken)
         spotifyApi.getFeaturedPlaylists().then((res) => {
             setLatestAlbums(res.body.playlists.items);
         })
