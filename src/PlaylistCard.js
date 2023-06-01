@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useNavigate} from "react-router-dom";
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -7,7 +8,12 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
-export default function Album({ album }) {
+export default function PlaylistCard({ playlist: playlist }) {
+    const navigate = useNavigate();
+
+    const handleViewClick = () => {
+        navigate(`/playlist/${playlist.id}`);
+    }
     return (
         <Grid item xs={9} sm={6} md={3}>
             <Card
@@ -16,21 +22,25 @@ export default function Album({ album }) {
                 <CardMedia
                     component="div"
                     sx={{
-                        // 16:9
                         pt: '56.25%',
                     }}
-                    image={album.images[0].url}
+                    image={playlist.images[0].url}
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {album.name}
+                        {playlist.name}
                     </Typography>
                     <Typography>
-                        {album.description}
+                        {playlist.description}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">View</Button>
+                    <Button
+                        size="small"
+                        onClick={handleViewClick}
+                    >
+                        View
+                    </Button>
                 </CardActions>
             </Card>
         </Grid>

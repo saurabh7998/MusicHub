@@ -1,4 +1,4 @@
-import Album from "../Album";
+import PlaylistCard from "../PlaylistCard";
 import Grid from "@mui/material/Grid";
 import {Box} from "@mui/material";
 import SideNavbar from "../shared/SideNavbar";
@@ -9,14 +9,14 @@ import {useSelector} from "react-redux";
 
 const Home = () => {
     const accessToken = useSelector((state) => state.appSlice.accessToken);
-    const [latestAlbums, setLatestAlbums] = useState([]);
+    const [latestPlaylists, setLatestPlaylists] = useState([]);
     useEffect(() => {
         if (!accessToken) {
             console.log("No access token!")
             return
         }
         spotifyApi.getFeaturedPlaylists().then((res) => {
-            setLatestAlbums(res.body.playlists.items);
+            setLatestPlaylists(res.body.playlists.items);
         })
     }, [accessToken]);
 
@@ -39,7 +39,7 @@ const Home = () => {
                     </Box>
                     <Grid container spacing={4}>
                         {
-                            latestAlbums.map((album) => <Album album={album}/>)
+                            latestPlaylists.map((playlist) => <PlaylistCard playlist={playlist}/>)
                         }
                     </Grid>
                 </Box>

@@ -6,7 +6,7 @@ import TrackSearchResult from './TrackSearchResult';
 import SideNavbar from "../shared/SideNavbar";
 import {useSelector} from "react-redux";
 
-const MainComponent = () => {
+const SearchPage = () => {
     const accessToken = useSelector((state) => state.appSlice.accessToken);
     const [search, setSearch] = React.useState('');
     const [searchResults, setSearchResults] = React.useState([]);
@@ -77,4 +77,4 @@ const MainComponent = () => {
     );
 };
 
-export default MainComponent;
+export default SearchPage;
