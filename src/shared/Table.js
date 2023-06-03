@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useEffect, useState} from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,9 +8,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { useEffect, useState } from 'react';
+import {createTrackData, formatDuration} from "./common";
 
 const columns = [
+    {
+        id: 'image',
+        label: '',
+        minWidth: 50,
+        align: 'left',
+    },
     {
         id: 'title',
         label: 'Title',
@@ -17,6 +24,7 @@ const columns = [
         align: 'left',
         format: (value) => value.toLocaleString('en-US'),
     },
+
     {
         id: 'album',
         label: 'Album',
@@ -36,20 +44,16 @@ const columns = [
         label: 'Duration',
         minWidth: 170,
         align: 'right',
-        format: (value) => value.toLocaleString(),
+        format: (value) => formatDuration(value),
     },
 ];
 
-function createData(title, album, dateAdded, duration) {
-    return { title, album, dateAdded, duration };
-}
-
-export default function StickyHeadTable({ data }) {
+export default function StickyHeadTable({data}) {
     const [rows, setRows] = useState([]);
-
     useEffect(() => {
         const newRows = data.map((item) => {
-            return createData(
+            return createTrackData(
+                item.track.album.images[1].url,
                 item.track.name,
                 item.track.album.name,
                 item.track.album.release_date,
@@ -72,8 +76,8 @@ export default function StickyHeadTable({ data }) {
     };
 
     return (
-        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
+        <Paper sx={{width: '100%', overflow: 'hidden'}}>
+            <TableContainer sx={{maxHeight: 440}}>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
@@ -81,7 +85,7 @@ export default function StickyHeadTable({ data }) {
                                 <TableCell
                                     key={column.id}
                                     align={column.align}
-                                    style={{ minWidth: column.minWidth }}
+                                    style={{minWidth: column.minWidth}}
                                 >
                                     {column.label}
                                 </TableCell>
@@ -90,15 +94,30 @@ export default function StickyHeadTable({ data }) {
                     </TableHead>
                     <TableBody>
                         {rows
-                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            .slice(page * rowsPerPage,
+                                   page * rowsPerPage + rowsPerPage)
                             .map((row) => {
                                 return (
-                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                                    <TableRow hover role="checkbox"
+                                              tabIndex={-1} key={row.code}>
                                         {columns.map((column) => {
                                             const value = row[column.id];
                                             return (
-                                                <TableCell key={column.id} align={column.align}>
-                                                    {column.format && typeof value === 'number' ? column.format(value) : value}
+                                                <TableCell key={column.id}
+                                                           align={column.align}>
+                                                    {column.id === 'image' ? (
+                                                                               <img src={row.imageUrl}
+                                                                                    alt="Album Cover"
+                                                                                    style={{
+                                                                                        width: 65,
+                                                                                        height: 65
+                                                                                    }}/>
+                                                                           ) :
+                                                     column.format
+                                                     && typeof value
+                                                     === 'number'
+                                                     ? column.format(value)
+                                                     : value}
                                                 </TableCell>
                                             );
                                         })}

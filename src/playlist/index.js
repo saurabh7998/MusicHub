@@ -23,7 +23,6 @@ const Playlist = () => {
             return;
         }
         spotifyApi.getPlaylist(id).then((res) => {
-            console.log(res.body);
             setName(res.body.name);
             setDescription(res.body.description);
             setTracks(res.body.tracks.items);
@@ -49,12 +48,17 @@ const Playlist = () => {
                         <Grid container>
                             <Grid xs={3}>
                                 <img src={image} alt={name}
-                                     style={{width: 250, height: 250, marginRight: 16}}/>
+                                     style={{
+                                         width: 250,
+                                         height: 250,
+                                         marginRight: 16
+                                     }}/>
                             </Grid>
                             <Grid xs={9}>
                                 <Typography variant="h6">Playlist</Typography>
                                 <Typography variant="h2">{name}</Typography>
-                                <Typography variant="h5">{description}</Typography>
+                                <Typography
+                                    variant="h5">{description}</Typography>
                             </Grid>
                         </Grid>
                     </Box>

@@ -20,7 +20,7 @@ const MusicHub = () => {
             <Route path={"/search"}
                    element={<SearchPage/>}/>
             <Route path={"/library"} element={<Library/>}/>
-            <Route path={"/playlist/:id"} element={<Playlist/>} />
+            <Route path={"/playlist/:id"} element={<Playlist/>}/>
         </Routes>
     );
 }
