@@ -7,9 +7,10 @@ import {
     IconButton,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const Appbar = ({ setSearch }) => {
+    const navigate = useNavigate();
     const location = useLocation();
     const isSearchPage = location.pathname === '/search';
     return (
@@ -50,10 +51,17 @@ const Appbar = ({ setSearch }) => {
                                 </IconButton>
                             </Box>
                         )}
-                        <Button size="medium">
+                        <Button
+                            size="medium"
+                            onClick={() => navigate("/signup")}
+                        >
                             Sign up
                         </Button>
-                        <Button variant="contained" size="medium">
+                        <Button
+                            variant="contained"
+                            size="medium"
+                            onClick={() => navigate("/login")}
+                        >
                             Login
                         </Button>
                     </Box>

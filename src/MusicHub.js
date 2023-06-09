@@ -6,6 +6,8 @@ import Home from "./home";
 import SearchPage from "./search";
 import Library from "./library";
 import Playlist from "./playlist";
+import Login from "./login/Login";
+import Signup from "./login/Signup";
 
 const MusicHub = () => {
     const dispatch = useDispatch();
@@ -15,6 +17,8 @@ const MusicHub = () => {
 
     return (
         <Routes>
+            <Route path={"/login"} element={<Login/>}/>
+            <Route path={"/signup"} element={<Signup/>}/>
             <Route path={"/"}
                    element={<Home/>}/>
             <Route path={"/search"}

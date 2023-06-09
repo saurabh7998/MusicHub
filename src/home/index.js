@@ -10,6 +10,7 @@ import {useSelector} from "react-redux";
 const Home = () => {
     const accessToken = useSelector((state) => state.appSlice.accessToken);
     const [latestPlaylists, setLatestPlaylists] = useState([]);
+
     useEffect(() => {
         if (!accessToken) {
             console.log("No access token!")

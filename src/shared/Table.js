@@ -16,6 +16,7 @@ const columns = [
         label: '',
         minWidth: 50,
         align: 'left',
+
     },
     {
         id: 'title',
@@ -33,8 +34,8 @@ const columns = [
         format: (value) => value.toLocaleString('en-US'),
     },
     {
-        id: 'dateAdded',
-        label: 'Date Added',
+        id: 'dateReleased',
+        label: 'Date Released',
         minWidth: 170,
         align: 'right',
         format: (value) => value.toLocaleDateString(),

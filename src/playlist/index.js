@@ -7,6 +7,7 @@ import {spotifyApi} from "../shared/common";
 import SideNavbar from "../shared/SideNavbar";
 import Typography from "@mui/material/Typography";
 import StickyHeadTable from "../shared/Table";
+import Appbar from "../shared/Appbar";
 
 const Playlist = () => {
     const {id} = useParams();
@@ -44,6 +45,9 @@ const Playlist = () => {
                         height: '100%',
                     }}
                 >
+                    <Box sx={{marginBottom: '20px'}}>
+                        <Appbar/>
+                    </Box>
                     <Box sx={{marginBottom: '20px'}}>
                         <Grid container>
                             <Grid xs={3}>
