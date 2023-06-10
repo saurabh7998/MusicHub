@@ -9,15 +9,15 @@ import {
     Radio,
     RadioGroup,
 } from '@mui/material';
-import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
-import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
-import {DatePicker} from '@mui/x-date-pickers/DatePicker';
+import {useDispatch} from "react-redux";
+import {registerUserThunk} from "../redux/authThunks";
+import {reset} from "../redux/authSlice";
 
 const Signup = () => {
+    const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [profileName, setProfileName] = useState('');
-    const [dateOfBirth, setDateOfBirth] = useState(null);
     const [gender, setGender] = useState('');
 
     const handleEmailChange = (event) => {
@@ -32,25 +32,22 @@ const Signup = () => {
         setProfileName(event.target.value);
     };
 
-    const handleDateOfBirthChange = (date) => {
-        setDateOfBirth(date);
-    };
-
     const handleGenderChange = (event) => {
         setGender(event.target.value);
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Perform signup logic here
-        console.log(
-            'Signup submitted:',
-            email,
-            password,
-            profileName,
-            dateOfBirth,
-            gender
-        );
+        dispatch(registerUserThunk({
+                                       name: profileName,
+                                       email,
+                                       password,
+                                   }));
+        dispatch(reset());
+    };
+
+    const inputStyles = {
+        color: 'white', // Set the desired text color here
     };
 
     return (
@@ -82,6 +79,8 @@ const Signup = () => {
                     required
                     autoFocus
                     margin="normal"
+                    InputLabelProps={{style: inputStyles}}
+                    InputProps={{style: inputStyles}}
                 />
                 <TextField
                     variant="outlined"
@@ -92,6 +91,8 @@ const Signup = () => {
                     fullWidth
                     required
                     margin="normal"
+                    InputLabelProps={{style: inputStyles}}
+                    InputProps={{style: inputStyles}}
                 />
                 <TextField
                     variant="outlined"
@@ -102,17 +103,14 @@ const Signup = () => {
                     fullWidth
                     required
                     margin="normal"
+                    InputLabelProps={{style: inputStyles}}
+                    InputProps={{style: inputStyles}}
                 />
-                <FormControl fullWidth margin="normal" required>
-                    <Typography>Date of Birth</Typography>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DatePicker label=""/>
-                    </LocalizationProvider>
-                </FormControl>
-                <FormControl component="fieldset" fullWidth margin="normal"
-                             required>
+                <FormControl component="fieldset" fullWidth
+                             margin="normal" required>
                     <Typography>Gender</Typography>
-                    <RadioGroup value={gender} onChange={handleGenderChange}>
+                    <RadioGroup value={gender} onChange={handleGenderChange}
+                                row>
                         <FormControlLabel value="female" control={<Radio/>}
                                           label="Female"/>
                         <FormControlLabel value="male" control={<Radio/>}

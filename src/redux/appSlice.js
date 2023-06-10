@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const spotifyApiSlice = createSlice({
-                                        name: 'appSlice',
+                                        name: 'app',
                                         initialState,
                                         extraReducers: {
                                             [setAccessTokenThunk.fulfilled]:

@@ -11,7 +11,7 @@ import Appbar from "../shared/Appbar";
 
 const Playlist = () => {
     const {id} = useParams();
-    const accessToken = useSelector((state) => state.appSlice.accessToken);
+    const accessToken = useSelector((state) => state.app.accessToken);
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");

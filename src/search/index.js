@@ -7,7 +7,7 @@ import SideNavbar from "../shared/SideNavbar";
 import {useSelector} from "react-redux";
 
 const SearchPage = () => {
-    const accessToken = useSelector((state) => state.appSlice.accessToken);
+    const accessToken = useSelector((state) => state.app.accessToken);
     const [search, setSearch] = React.useState('');
     const [searchResults, setSearchResults] = React.useState([]);
 

@@ -4,15 +4,27 @@ import {
     Button,
     Box,
     InputBase,
-    IconButton,
+    IconButton, Typography,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import {useLocation, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {logoutUserThunk} from "../redux/authThunks";
+import {reset} from "../redux/authSlice";
 
-const Appbar = ({ setSearch }) => {
+const Appbar = ({setSearch}) => {
+    const {user} = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
     const isSearchPage = location.pathname === '/search';
+
+    const handleLogout = () => {
+        dispatch(logoutUserThunk());
+        dispatch(reset());
+        navigate("/");
+    };
+
     return (
         <Box
             sx={{
@@ -44,26 +56,55 @@ const Appbar = ({ setSearch }) => {
                                     placeholder="What do you want to listen to?"
                                     onChange={(e) => setSearch(e.target.value)}
                                 />
-                                <IconButton sx={{p: '10px', color:'rgba(255,'
-                                                                  + ' 255, 255, 255)',}}
+                                <IconButton sx={{
+                                    p: '10px', color: 'rgba(255,'
+                                                      + ' 255, 255, 255)',
+                                }}
                                             aria-label="search">
                                     <SearchIcon/>
                                 </IconButton>
                             </Box>
                         )}
-                        <Button
-                            size="medium"
-                            onClick={() => navigate("/signup")}
-                        >
-                            Sign up
-                        </Button>
-                        <Button
-                            variant="contained"
-                            size="medium"
-                            onClick={() => navigate("/login")}
-                        >
-                            Login
-                        </Button>
+                        {
+                            !user && (
+                                      <Box>
+                                          <Button
+                                              size="medium"
+                                              onClick={() => navigate("/signup")}
+                                          >
+                                              Sign up
+                                          </Button>
+                                          <Button
+                                              variant="contained"
+                                              size="medium"
+                                              onClick={() => navigate("/login")}
+                                          >
+                                              Login
+                                          </Button>
+                                      </Box>
+                                  )
+                        }
+                        {
+                            user && (
+                                     <Box>
+                                         <Button
+                                             size="medium"
+                                             style={{textTransform: 'none'}}
+                                         >
+                                             <Typography>
+                                                 Hi {user.name}
+                                             </Typography>
+                                         </Button>
+                                         <Button
+                                             variant="contained"
+                                             size="medium"
+                                             onClick={handleLogout}
+                                         >
+                                             Logout
+                                         </Button>
+                                     </Box>
+                                 )
+                        }
                     </Box>
                 </Toolbar>
             </Box>

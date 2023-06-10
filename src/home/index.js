@@ -8,7 +8,7 @@ import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 
 const Home = () => {
-    const accessToken = useSelector((state) => state.appSlice.accessToken);
+    const accessToken = useSelector((state) => state.app.accessToken);
     const [latestPlaylists, setLatestPlaylists] = useState([]);
 
     useEffect(() => {
