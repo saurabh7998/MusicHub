@@ -41,6 +41,7 @@ const SearchPage = () => {
                         title: track.name,
                         uri: track.uri,
                         albumUrl: smallestAlbumImage.url,
+                        album: track.album,
                     };
                 })
             );

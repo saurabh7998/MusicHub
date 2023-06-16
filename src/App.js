@@ -4,6 +4,7 @@ import {configureStore} from "@reduxjs/toolkit";
 import {Provider, useDispatch, useSelector} from "react-redux";
 import appReducer from './redux/appSlice';
 import authReducer from "./redux/authSlice";
+import likedTrackReducer from "./redux/likedTrackSlice"
 import MusicHub from "./MusicHub";
 
 const defaultTheme = createTheme();
@@ -12,6 +13,7 @@ const store = configureStore({
                                  reducer: {
                                      app: appReducer,
                                      auth: authReducer,
+                                     likedTrack: likedTrackReducer,
                                  },
                              });
 

@@ -1,9 +1,36 @@
-import React, {useState} from "react"
+import React, {useEffect, useMemo, useState} from "react"
 import {Box, Typography, IconButton} from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderOutlinedIcon
+    from '@mui/icons-material/FavoriteBorderOutlined';
 import Grid from "@mui/material/Grid";
+import {useDispatch, useSelector} from "react-redux";
+import {likeTrackThunk} from "../redux/thunks/likedTrackThunks";
+import {userLikeTrackThunk} from "../redux/thunks/authThunks";
 
 export default function TrackSearchResult({track, key}) {
+    const dispatch = useDispatch();
+    const {user} = useSelector((state) => state.auth);
+
+    const handleLike = async (track) => {
+        const trackWithUser = {
+            ...track,
+            user: user,
+        };
+
+        try {
+            const res = await dispatch(likeTrackThunk(trackWithUser));
+
+            await dispatch(
+                userLikeTrackThunk({
+                                            userId: user._id,
+                                            likedTrackId: res.payload.track.trackId,
+                                        })
+            );
+        } catch (error) {
+            console.error('Error liking track and adding to user:', error);
+        }
+    };
 
     return (
         <div>
@@ -33,9 +60,14 @@ export default function TrackSearchResult({track, key}) {
                         </Box>
                     </Box>
                 </Grid>
-                <IconButton>
-                    <FavoriteIcon color="primary"/>
-                </IconButton>
+                {
+                    user && (
+                             <IconButton onClick={() => handleLike(track)}>
+                                 <FavoriteBorderOutlinedIcon color="primary"/>
+                             </IconButton>
+                         )
+                }
+
             </Grid>
         </div>
     );

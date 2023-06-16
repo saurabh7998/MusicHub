@@ -9,7 +9,7 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import {useLocation, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {logoutUserThunk} from "../redux/authThunks";
+import {logoutUserThunk} from "../redux/thunks/authThunks";
 import {reset} from "../redux/authSlice";
 
 const Appbar = ({setSearch}) => {

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Box, Typography, TextField, Button} from '@mui/material';
 import {toast} from 'react-toastify'
 import {useDispatch, useSelector} from "react-redux";
-import {loginUserThunk} from "../redux/authThunks";
+import {loginUserThunk} from "../redux/thunks/authThunks";
 import {useNavigate} from "react-router-dom";
 
 const Login = () => {

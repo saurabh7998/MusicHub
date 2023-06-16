@@ -22,3 +22,13 @@ export const loginUser = async (user) => {
 export const logout = () => {
     localStorage.removeItem('user');
 };
+
+export const getUserLikedTracks = async (userId) => {
+    const response = await axios.post(`${SPOTIFY_API}/${'user/likedSongs'}`, {userId});
+    return response.data;
+}
+
+export const userLikeTrack = async ({userId, likedTrackId}) => {
+    const response = await axios.post(`${SPOTIFY_API}/${'user/like'}`, {userId, likedTrackId})
+    return response.data;
+}

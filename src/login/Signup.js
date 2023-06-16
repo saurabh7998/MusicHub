@@ -10,7 +10,7 @@ import {
     RadioGroup,
 } from '@mui/material';
 import {useDispatch} from "react-redux";
-import {registerUserThunk} from "../redux/authThunks";
+import {registerUserThunk} from "../redux/thunks/authThunks";
 import {reset} from "../redux/authSlice";
 
 const Signup = () => {

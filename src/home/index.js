@@ -1,4 +1,4 @@
-import PlaylistCard from "../PlaylistCard";
+import PlaylistCard from "./PlaylistCard";
 import Grid from "@mui/material/Grid";
 import {Box} from "@mui/material";
 import SideNavbar from "../shared/SideNavbar";
