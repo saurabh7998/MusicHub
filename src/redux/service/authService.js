@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const SPOTIFY_API = 'http://localhost:4000/api'
-const SPOTIFY_API = 'https://music-hub-service.onrender.com/api'
+const SPOTIFY_API = 'http://localhost:4000/api'
+// const SPOTIFY_API = 'https://music-hub-service.onrender.com/api'
 
 export const registerUser = async (user) => {
     const response = await axios.post(`${SPOTIFY_API}/${'user'}`, user);
@@ -25,11 +25,19 @@ export const logout = () => {
 };
 
 export const getUserLikedTracks = async (userId) => {
-    const response = await axios.post(`${SPOTIFY_API}/${'user/likedSongs'}`, {userId});
+    const response = await axios.post(`${SPOTIFY_API}/${'user/likedSongs'}`,
+                                      {userId});
     return response.data;
 }
 
 export const userLikeTrack = async ({userId, likedTrackId}) => {
-    const response = await axios.post(`${SPOTIFY_API}/${'user/like'}`, {userId, likedTrackId})
+    const response = await axios.post(`${SPOTIFY_API}/${'user/like'}`,
+                                      {userId, likedTrackId})
     return response.data;
 }
+
+export const userDislikeTrack = async ({userId, trackId}) => {
+    const response = await axios.post(`${SPOTIFY_API}/user/dislike`,
+                                      {userId, trackId});
+    return response.data;
+};

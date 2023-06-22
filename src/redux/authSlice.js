@@ -3,7 +3,7 @@ import {
     loginUserThunk,
     logoutUserThunk,
     registerUserThunk,
-    getUserLikedTracksThunk, userLikeTrackThunk
+    getUserLikedTracksThunk, userLikeTrackThunk, userDislikeTrackThunk
 } from "./thunks/authThunks";
 
 const user = JSON.parse(localStorage.getItem('user'))
@@ -70,6 +70,11 @@ const authSlice = createSlice({
                                               state.likedTracks =
                                                   [...state.likedTracks,
                                                    ...action.payload.likedTracks];
+                                          },
+                                      [userDislikeTrackThunk.fulfilled]:
+                                          (state, action) => {
+                                              state.likedTracks =
+                                                  action.payload.likedTracks;
                                           }
                                   },
                                   reducers: {

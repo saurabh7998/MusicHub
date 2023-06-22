@@ -5,12 +5,20 @@ import FavoriteBorderOutlinedIcon
     from '@mui/icons-material/FavoriteBorderOutlined';
 import Grid from "@mui/material/Grid";
 import {useDispatch, useSelector} from "react-redux";
-import {likeTrackThunk} from "../redux/thunks/likedTrackThunks";
-import {userLikeTrackThunk} from "../redux/thunks/authThunks";
+import {
+    dislikeTrackThunk,
+    likeTrackThunk
+} from "../redux/thunks/likedTrackThunks";
+import {
+    getUserLikedTracksThunk,
+    userDislikeTrackThunk,
+    userLikeTrackThunk
+} from "../redux/thunks/authThunks";
 
-export default function TrackSearchResult({track, key}) {
+export default function TrackCard({track, key}) {
     const dispatch = useDispatch();
     const {user} = useSelector((state) => state.auth);
+    const {likedTracks} = useSelector((state) => state.auth)
 
     const handleLike = async (track) => {
         const trackWithUser = {
@@ -18,17 +26,35 @@ export default function TrackSearchResult({track, key}) {
             user: user,
         };
 
-        try {
-            const res = await dispatch(likeTrackThunk(trackWithUser));
+        if (!likedTracks.some((t) => t.trackId === track.trackId)) {
+            try {
+                const res = await dispatch(likeTrackThunk(trackWithUser));
 
-            await dispatch(
-                userLikeTrackThunk({
-                                            userId: user._id,
-                                            likedTrackId: res.payload.track.trackId,
-                                        })
-            );
-        } catch (error) {
-            console.error('Error liking track and adding to user:', error);
+                await dispatch(
+                    userLikeTrackThunk({
+                                           userId: user._id,
+                                           likedTrackId: res.payload.track.trackId,
+                                       })
+                );
+                dispatch(getUserLikedTracksThunk(user._id));
+            } catch (error) {
+                console.error('Error liking track and adding to user:', error);
+            }
+        } else {
+            try {
+
+                const res = await dispatch(dislikeTrackThunk(trackWithUser))
+                console.log(res);
+
+                await dispatch(userDislikeTrackThunk({
+                                                         userId: user._id,
+                                                         trackId: res.payload.track.trackId,
+                                                     }));
+
+                dispatch(getUserLikedTracksThunk(user._id));
+            } catch (error) {
+                console.error('Error disliking the track:', error);
+            }
         }
     };
 
@@ -63,7 +89,12 @@ export default function TrackSearchResult({track, key}) {
                 {
                     user && (
                              <IconButton onClick={() => handleLike(track)}>
-                                 <FavoriteBorderOutlinedIcon color="primary"/>
+                                 {
+                                     likedTracks.some((t) => t.trackId === track.trackId)
+                                     ? <FavoriteIcon color="primary"/> :
+                                     <FavoriteBorderOutlinedIcon color="primary"/>
+                                 }
+
                              </IconButton>
                          )
                 }

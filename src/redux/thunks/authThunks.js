@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit"
-import * as authService from '../../service/authService'
+import * as authService from '../service/authService'
 
 export const registerUserThunk = createAsyncThunk(
     'api/user',
@@ -48,6 +48,13 @@ export const userLikeTrackThunk = createAsyncThunk(
     '/api/user/addLikedSong',
     async ({userId, likedTrackId}) => {
         return await authService.userLikeTrack({userId, likedTrackId});
+    }
+)
+
+export const userDislikeTrackThunk = createAsyncThunk(
+    '/api/user/removeLikedSong',
+    async ({userId, trackId}) => {
+        return await authService.userDislikeTrack({userId, trackId});
     }
 )
 
