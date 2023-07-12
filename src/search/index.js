@@ -2,12 +2,12 @@ import React from 'react';
 import Appbar from '../shared/Appbar';
 import {Box, Grid} from '@mui/material';
 import {spotifyApi} from '../shared/common';
-import TrackSearchResult from './TrackSearchResult';
+import TrackCard from '../shared/TrackCard';
 import SideNavbar from "../shared/SideNavbar";
 import {useSelector} from "react-redux";
 
 const SearchPage = () => {
-    const accessToken = useSelector((state) => state.appSlice.accessToken);
+    const accessToken = useSelector((state) => state.app.accessToken);
     const [search, setSearch] = React.useState('');
     const [searchResults, setSearchResults] = React.useState([]);
 
@@ -26,6 +26,7 @@ const SearchPage = () => {
             if (cancel) {
                 return;
             }
+
             setSearchResults(
                 res.body.tracks.items.map((track) => {
                     const smallestAlbumImage = track.album.images.reduce(
@@ -41,6 +42,8 @@ const SearchPage = () => {
                         title: track.name,
                         uri: track.uri,
                         albumUrl: smallestAlbumImage.url,
+                        album: track.album,
+                        trackId: track.id,
                     };
                 })
             );
@@ -67,7 +70,7 @@ const SearchPage = () => {
                     <div>
                         {searchResults.map((track, index) => (
                             <div key={index} style={{marginBottom: '10px'}}>
-                                <TrackSearchResult track={track}/>
+                                <TrackCard track={track}/>
                             </div>
                         ))}
                     </div>

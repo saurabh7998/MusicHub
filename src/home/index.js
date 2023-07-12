@@ -1,4 +1,4 @@
-import PlaylistCard from "../PlaylistCard";
+import PlaylistCard from "./PlaylistCard";
 import Grid from "@mui/material/Grid";
 import {Box} from "@mui/material";
 import SideNavbar from "../shared/SideNavbar";
@@ -8,8 +8,9 @@ import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 
 const Home = () => {
-    const accessToken = useSelector((state) => state.appSlice.accessToken);
+    const accessToken = useSelector((state) => state.app.accessToken);
     const [latestPlaylists, setLatestPlaylists] = useState([]);
+
     useEffect(() => {
         if (!accessToken) {
             console.log("No access token!")

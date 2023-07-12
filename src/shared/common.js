@@ -4,9 +4,9 @@ export const spotifyApi = new SpotifyWebApi({
                                                 clientId: "4a89680f85b44ea0931efc1d24e59460",
                                             })
 
-export const createTrackData = (imageUrl, title, album, dateAdded,
+export const createTrackData = (imageUrl, title, album, dateReleased,
                                 duration) => {
-    return {imageUrl, title, album, dateAdded, duration};
+    return {imageUrl, title, album, dateReleased, duration};
 }
 
 export const formatDuration = (milliseconds) => {

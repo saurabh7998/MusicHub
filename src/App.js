@@ -1,15 +1,19 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {configureStore} from "@reduxjs/toolkit";
-import appReducer from './redux/index';
 import {Provider, useDispatch, useSelector} from "react-redux";
+import appReducer from './redux/appSlice';
+import authReducer from "./redux/authSlice";
+import likedTrackReducer from "./redux/likedTrackSlice"
 import MusicHub from "./MusicHub";
 
 const defaultTheme = createTheme();
 
 const store = configureStore({
                                  reducer: {
-                                     appSlice: appReducer,
+                                     app: appReducer,
+                                     auth: authReducer,
+                                     likedTrack: likedTrackReducer,
                                  },
                              });
 

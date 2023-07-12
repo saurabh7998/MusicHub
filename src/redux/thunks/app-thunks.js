@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit"
-import * as service from '../service/index'
+import * as service from '../service'
 
 export const setAccessTokenThunk = createAsyncThunk(
     'spotifywebapi/getToken',

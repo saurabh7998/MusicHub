@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {setAccessTokenThunk} from "./app-thunks";
+import {setAccessTokenThunk} from "./thunks/app-thunks";
 import {spotifyApi} from "../shared/common";
 
 const initialState = {
@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const spotifyApiSlice = createSlice({
-                                        name: 'appSlice',
+                                        name: 'app',
                                         initialState,
                                         extraReducers: {
                                             [setAccessTokenThunk.fulfilled]:
@@ -18,17 +18,7 @@ const spotifyApiSlice = createSlice({
                                                         state.accessToken);
                                                 },
                                         },
-                                        reducers: {
-                                            // setAccessToken(state, action) {
-                                            //     console.log(action.payload)
-                                            //     state = {
-                                            //         accessToken:
-                                            // action.payload } },
-                                            getAccessToken(state, action) {
-                                                return state.accessToken;
-                                            }
-                                        }
+                                        reducers: {}
                                     });
 
-export const {getAccessToken} = spotifyApiSlice.actions
 export default spotifyApiSlice.reducer

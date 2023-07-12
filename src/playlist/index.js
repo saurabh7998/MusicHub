@@ -7,10 +7,11 @@ import {spotifyApi} from "../shared/common";
 import SideNavbar from "../shared/SideNavbar";
 import Typography from "@mui/material/Typography";
 import StickyHeadTable from "../shared/Table";
+import Appbar from "../shared/Appbar";
 
 const Playlist = () => {
     const {id} = useParams();
-    const accessToken = useSelector((state) => state.appSlice.accessToken);
+    const accessToken = useSelector((state) => state.app.accessToken);
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -44,6 +45,9 @@ const Playlist = () => {
                         height: '100%',
                     }}
                 >
+                    <Box sx={{marginBottom: '20px'}}>
+                        <Appbar/>
+                    </Box>
                     <Box sx={{marginBottom: '20px'}}>
                         <Grid container>
                             <Grid xs={3}>
