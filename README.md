@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# MusicHub - Spotify Inspired Music App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![MusicHub Banner](music-hub-saurabhg.netlify.app)
 
-## Available Scripts
+MusicHub is a full-stack web application that provides a Spotify-inspired music experience. The app allows users to explore a wide range of songs, albums, and playlists, powered by the open-source Spotify Web API. Users can search for songs, like their favorite tracks, and create personalized playlists.
 
-In the project directory, you can run:
+## App URL
+[https://music-hub-saurabhg.netlify.app/](https://music-hub-saurabhg.netlify.app/)
 
-### `npm start`
+## Technologies Used
+- Frontend: React.js, Material UI (MUI), Redux (Redux Toolkit), React Hooks
+- Backend: Node.js, Express.js
+- Database: MongoDB
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How Authentication Works
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+MusicHub has its own authentication mechanism. When a user signs up or logs in from the UI, a request is sent to the backend service. The backend then generates a JWT (JSON Web Token) and sends it back as a response. This JWT token is stored in the browser's local storage. Subsequently, if a user is already logged in and has a valid JWT token, they do not need to log in again, as the tokens will match.
 
-### `npm test`
+### JWT (JSON Web Token) - Overview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+JWT is a compact, URL-safe means of representing claims to be transferred between two parties. In the context of MusicHub, the JWT token serves as a secure way to identify users and manage their authentication state without relying on sessions or cookies. It contains encoded user information and an expiration time, signed with a secret key on the server side.
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Search: Users can search for songs using the Spotify API and get a list of matching tracks.
+- Like Songs: Logged-in users have the ability to like their favorite songs.
+- Create Playlists: Authenticated users can create their own playlists and manage them.
+- Home Page: The home page showcases top albums and playlists as cards, which can be clicked to explore the entire playlist.
+- Authentication: Secure user authentication and password hashing using MongoDB for storage.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation and Setup
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you want to run the MusicHub app locally or contribute to its development, follow these steps:
 
-### `npm run eject`
+1. Clone the repository: `https://github.com/saurabh7998/MusicHub`
+2. Install frontend dependencies: `npm install`
+3. Clone the repository: `https://github.com/saurabh7998/MusicHubServer`
+4. Install backend dependencies: `npm install`
+5. Set up MongoDB: Make sure you have MongoDB installed and running locally or provide the connection string in `backend/.env` file.
+6. Start the frontend and backend servers: In separate terminal windows, run `cd frontend && npm start` and `cd backend && npm start` respectively.
+7. Access the app in your browser at `http://localhost:3000/`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contributing
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Contributions to MusicHub are welcome! Whether you find a bug, have a suggestion, or want to add new features, feel free to submit a pull request. Please follow the project's coding standards and guidelines when contributing.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Future Plans
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+MusicHub is an ongoing project, and I plan to add more exciting features in the future, such as:
 
-## Learn More
+- User Profile: Allow users to customize their profiles and update personal information.
+- Collaborative Playlists: Enable users to share and collaborate on playlists with friends.
+- Social Sharing: Add social media sharing options for playlists and liked songs.
+- Improved Recommendations: Enhance the recommendation engine for personalized music suggestions.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Stay tuned for updates and feature enhancements!
