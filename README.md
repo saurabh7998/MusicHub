@@ -1,6 +1,6 @@
 # MusicHub - Spotify Inspired Music App
 
-![MusicHub Banner](music-hub-saurabhg.netlify.app)
+![MusicHub Banner](https://github.com/saurabh7998/MusicHub/blob/main/public/MusicHub-Preview.png)
 
 MusicHub is a full-stack web application that provides a Spotify-inspired music experience. The app allows users to explore a wide range of songs, albums, and playlists, powered by the open-source Spotify Web API. Users can search for songs, like their favorite tracks, and create personalized playlists.
 
