@@ -12,7 +12,7 @@ const store = configureStore({
                                      appSlice: appReducer,
                                  },
                              });
-
+// This is the entry point of APP
 function App() {
     return (
         <ThemeProvider theme={defaultTheme}>
